@@ -1,0 +1,7 @@
+{
+  "name": "Gemstance Orchestrator",
+  "description": "An application for automating multi-MI-model flows, featuring an armoire of custom MI packages, a Gemstance Resources bureau for configuration, and a virtual sandbox for agent simulation.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
