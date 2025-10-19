@@ -1,9 +1,11 @@
 import React from 'react';
-import type { Agent, SandboxMode } from '../types';
+import type { Agent, SandboxMode } from './types';
 import { PlayIcon, PauseIcon, GlobeEuropeAfricaIcon, ArrowUpTrayIcon, BriefcaseIcon, SunIcon, BookOpenIcon } from './Icons';
+import ShockFactorVisualizer from './ShockFactorVisualizer';
 
 interface SandboxProps {
   agents: Agent[];
+  showShockFactor?: boolean;
   isSimulating: boolean;
   onToggleSimulation: () => void;
   simulationLog: string[];
@@ -69,7 +71,7 @@ const SandboxModeToggle: React.FC<{ mode: SandboxMode, setMode: (mode: SandboxMo
 );
 
 
-const Sandbox: React.FC<SandboxProps> = ({ agents, isSimulating, onToggleSimulation, simulationLog, onBeamUp, sandboxMode, onSetSandboxMode }) => {
+const Sandbox: React.FC<SandboxProps> = ({ agents, isSimulating, onToggleSimulation, simulationLog, onBeamUp, sandboxMode, onSetSandboxMode, showShockFactor }) => {
   return (
     <div className="flex-grow bg-gray-800/60 p-6 rounded-lg border border-blue-500/20 flex flex-col">
       <div className="flex justify-between items-center mb-4">
@@ -90,6 +92,8 @@ const Sandbox: React.FC<SandboxProps> = ({ agents, isSimulating, onToggleSimulat
         </div>
       </div>
       
+      {showShockFactor && <ShockFactorVisualizer />}
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
         {agents.map((agent) => (
           <AgentCard key={agent.id} agent={agent} onBeamUp={onBeamUp} />

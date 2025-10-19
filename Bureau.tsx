@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import type { Agent } from '../types';
-import { MI_PACKAGE_LIST } from '../constants';
+import type { Agent } from './types';
+import { MI_PACKAGE_LIST } from './constants';
 import { UserGroupIcon, Cog6ToothIcon, BeakerIcon, ArrowDownTrayIcon, ArchiveBoxIcon, UserPlusIcon, PlusCircleIcon, SparklesIcon, MicrophoneIcon, ChatBubbleBottomCenterTextIcon } from './Icons';
 import ToggleSwitch from './ToggleSwitch';
 
