@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Agent, MIPackage } from './types';
-import { BrainIcon, CodeBracketIcon, HeartIcon, ChartBarIcon, SparklesIcon, GlobeAltIcon } from './components/Icons';
+import { BrainIcon, CodeBracketIcon, HeartIcon, ChartBarIcon, SparklesIcon, GlobeAltIcon, ZapIcon } from './Icons';
 
 // FIX: Replaced JSX elements with component references to fix errors caused by using JSX in a .ts file.
 // The icon components will be rendered in the consuming .tsx files.
@@ -11,6 +11,7 @@ export const MI_PACKAGE_LIST: MIPackage[] = [
   { id: 'pkg-004', name: 'Predictive Analytics', description: 'Enables forecasting based on complex data sets.', icon: ChartBarIcon },
   { id: 'pkg-005', name: 'Multi-lingual Fluency', description: 'Unlocks seamless translation and communication.', icon: GlobeAltIcon },
   { id: 'pkg-006', name: 'Advanced Tooling', description: 'Grants access to specialized digital tools and APIs.', icon: CodeBracketIcon },
+  { id: 'pkg-007', name: 'Shock Factor', description: 'Adds a dramatic, attention-grabbing visual element.', icon: ZapIcon },
 ];
 
 export const INITIAL_AGENTS: Agent[] = [

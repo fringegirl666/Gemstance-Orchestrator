@@ -2,14 +2,14 @@ import React, { useState, useCallback, useEffect, useRef } from 'react';
 // FIX: 'Agent' is a type and should be imported from './types'.
 import type { Agent, SandboxMode, ConversationEntry } from './types';
 import { MI_PACKAGE_LIST, INITIAL_AGENTS } from './constants';
-import { updateAgentActivity, distillDirective } from './services/geminiService';
-import Header from './components/Header';
-import Armoire from './components/Armoire';
-import Bureau from './components/Bureau';
-import Sandbox from './components/Sandbox';
-import OnboardingWizard from './components/OnboardingWizard';
-import HelpModal from './components/HelpModal';
-import ConverseModal from './components/ConverseModal';
+import { updateAgentActivity, distillDirective } from './geminiService';
+import Header from './Header';
+import Armoire from './Armoire';
+import Bureau from './Bureau';
+import Sandbox from './Sandbox';
+import OnboardingWizard from './OnboardingWizard';
+import HelpModal from './HelpModal';
+import ConverseModal from './ConverseModal';
 
 const App: React.FC = () => {
   const [agents, setAgents] = useState<Agent[]>(() => {
@@ -283,6 +283,7 @@ const App: React.FC = () => {
             onBeamUp={handleBeamUpAgent}
             sandboxMode={sandboxMode}
             onSetSandboxMode={setSandboxMode}
+            showShockFactor={selectedAgent?.enabledPackages.includes('pkg-007')}
           />
         </div>
       </main>

@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import type { Agent } from '../types';
-import { distillMemoryFromTranscript } from '../services/geminiService';
+import { distillMemoryFromTranscript } from './geminiService';
 import { SparklesIcon, BeakerIcon } from './Icons';
 
 interface OnboardingWizardProps {
