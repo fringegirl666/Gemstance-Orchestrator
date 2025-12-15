@@ -1,5 +1,5 @@
 import React from 'react';
-import type { MIPackage } from '../types';
+import type { MIPackage } from './types';
 import { CubeTransparentIcon } from './Icons';
 
 interface ArmoireProps {

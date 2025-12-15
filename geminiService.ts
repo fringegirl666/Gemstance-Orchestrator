@@ -1,5 +1,5 @@
 import { GoogleGenAI } from "@google/genai";
-import type { Agent, SandboxMode } from '../types';
+import type { Agent, SandboxMode } from './types';
 
 const API_KEY = process.env.API_KEY;
 

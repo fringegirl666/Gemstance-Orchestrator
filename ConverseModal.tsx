@@ -1,6 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import type { Agent } from '../types';
-import { GoogleGenAI, LiveServerMessage, Modality, Blob, LiveSession } from "@google/genai";
+import type { Agent } from './types';
+import { GoogleGenAI, LiveServerMessage, Modality, Blob, Session } from "@google/genai";
+
+declare global {
+  interface Window {
+    webkitAudioContext?: typeof AudioContext;
+  }
+}
 
 interface ConverseModalProps {
   agent: Agent;
@@ -63,7 +69,7 @@ const ConverseModal: React.FC<ConverseModalProps> = ({ agent, onClose }) => {
   const [status, setStatus] = useState<'IDLE' | 'CONNECTING' | 'LISTENING' | 'SPEAKING' | 'ERROR'>('IDLE');
   const [transcription, setTranscription] = useState<{ speaker: 'user' | 'agent', text: string }[]>([]);
   
-  const sessionPromiseRef = useRef<Promise<LiveSession> | null>(null);
+  const sessionPromiseRef = useRef<Promise<Session> | null>(null);
   const inputAudioContextRef = useRef<AudioContext | null>(null);
   const outputAudioContextRef = useRef<AudioContext | null>(null);
   const sourcesRef = useRef(new Set<AudioBufferSourceNode>());
@@ -114,9 +120,9 @@ const ConverseModal: React.FC<ConverseModalProps> = ({ agent, onClose }) => {
         const directive = agent.personality.distilledDirective || agent.personality.basePrompt;
         
         // Setup audio contexts
-        // FIX: Cast `window` to `any` to allow access to the vendor-prefixed `webkitAudioContext` for older browser compatibility.
-        inputAudioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 16000 });
-        outputAudioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 24000 });
+        const AudioContextConstructor = window.AudioContext || window.webkitAudioContext;
+        inputAudioContextRef.current = new AudioContextConstructor({ sampleRate: 16000 });
+        outputAudioContextRef.current = new AudioContextConstructor({ sampleRate: 24000 });
         const outputNode = outputAudioContextRef.current.createGain();
 
         sessionPromiseRef.current = ai.live.connect({
